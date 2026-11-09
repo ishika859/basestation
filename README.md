@@ -5,6 +5,8 @@ The main idea behind this project was to make a base station where an autonomous
 One of the biggest problems we wanted to solve was that the drone might not land exactly at the center of the base station every time. To solve this, we designed a four-rod centering mechanism using **NEMA 17 stepper motors and T8 lead screws**.
 The first two rods move towards the drone and bring it towards the center. Once the drone is aligned, the other two rods move towards it and connect through copper charging plates. After charging is completed, the rods move back and the drone can take off again.
 The base station uses Arduino Uno, CNC shields, DRV8825 drivers and an ESP32-based communication system to control the complete mechanism.
+<img width="1198" height="1164" alt="image" src="https://github.com/user-attachments/assets/15af1bee-e4b8-4d50-a295-ff0d71ce3058" />
+
 
 ## Features
 
@@ -23,7 +25,7 @@ The base station uses Arduino Uno, CNC shields, DRV8825 drivers and an ESP32-bas
 
 ## BOM – Bill of Materials
 
-|| Component | Qty. | Purpose | Price (USD/unit) | Purchase link |
+| Component | Qty. | Purpose | Price (USD/unit) | Purchase link |
 |---|---:|---|---:|---|
 | NEMA 17 Stepper Motor | 8 | Moves the four alignment rods | $9.03 | [FlyRobo](https://www.flyrobo.in/nema-17-stepper-motor-42x47mm-0.48nm) |
 | T8 Lead Screw Rod (400mm) | 4 | Converts motor rotation into linear movement | $3.20 | [Invento Sales](https://www.inventosales.com/) |
@@ -40,6 +42,27 @@ The base station uses Arduino Uno, CNC shields, DRV8825 drivers and an ESP32-bas
 | 12mm Plywood | As required | Main base station structure | $22.84/sheet | [Plyneer](https://plyneer.com/) |
 | Screws and Nuts | As required | Fixing different components | $2.65/kit | [GSK CUT](https://gskcut.in/) |
 | Power Supply (12V 10A) | As required | Provides power to motors and electronics | $8.51 | [Electronic Spices](https://electronicspices.com/product/12v-10a-120watt-dc-output-smps-metal-case-power-supply-ac-to-dc/) |
+
+
+## Circuit Diagram
+<img width="1586" height="1214" alt="image" src="https://github.com/user-attachments/assets/2d832c4b-0667-496d-ba41-9ab372668acc" />
+
+The wiring process starts by mounting the CNC Shield V3 onto the Arduino Uno R3. The shield is connected directly to the Arduino's pin headers, allowing it to control the stepper motors through dedicated driver slots.
+Next, the DRV8825 stepper motor drivers are inserted into the CNC Shield's driver sockets, making sure their pin orientations match the shield's markings. Each driver is assigned to a motor axis, and the stepper motors are connected to the corresponding output terminals.
+The four limit switches are connected to the appropriate end-stop inputs on the CNC Shield to detect the alignment rods' end positions and prevent them from moving beyond their limits.
+The 12V power supply is connected to the CNC Shield's motor power input to provide power to the stepper motors. The Arduino receives power separately through USB or a suitable regulated supply.
+The ESP32 development board is connected to the Arduino through suitable communication and control connections. It handles communication with the drone and sends the required commands to the motor-control system.
+
+Finally, the copper plates are connected to the charging circuit to provide electrical contact when the drone reaches the charging position. All grounds and power connections are checked before switching on the system.
+
+Important wiring considerations:
+- Check the DRV8825 driver orientation before inserting it.
+- Set the motor driver's current limit according to the stepper motor specifications.
+- Use suitable power wiring for the motors.
+- Ensure the ESP32 and Arduino share a common ground when using signal connections.
+- Verify the limit switch logic and motor directions before running the complete mechanism.
+  
+Super Important : The CNC Shield V3 normally supports up to four stepper drivers, so with eight motors and two Arduino/shield setups, divide the motors between the two shields. Also, verify the ESP32 communication wiring and charging circuit separately before powering everything.
 
 ## Mechanical Design
 
@@ -226,11 +249,13 @@ The motor code controls the movement of the rods, checks the limit switches and 
 
 The ESP32 communication system is designed to receive the drone's landing status and send an activation signal to the Arduino.
 
-## CAD Models and Documentation
+## CAD Models
 
 The CAD files include the wooden base layout, motor holders, rod arrangement and other mechanical parts used in the base station.
+<img width="901" height="550" alt="image" src="https://github.com/user-attachments/assets/99bfa72f-2456-483c-9bcc-827eca630b0d" />
+<img width="1205" height="476" alt="image" src="https://github.com/user-attachments/assets/a43675df-d45e-4d49-b024-4e54863ea9ae" />
+<img width="1005" height="649" alt="image" src="https://github.com/user-attachments/assets/10ce7a67-f83b-43a1-b1e3-3e6b7c884ebf" />
 
-Circuit diagrams, code and assembly pictures can also be added here so that anyone trying to recreate the project can understand how everything is connected.
 
 ## Final Thoughts
 
