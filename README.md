@@ -1,6 +1,6 @@
 # Autonomous Drone Charging Base Station
 
-This is the complete build documentation for our **Autonomous Drone Charging Base Station**, developed as part of **ISRO Robotics Challenge – IROC-U 2026**.
+This is the complete build documentation for our **Autonomous Drone Charging Base Station**
 The main idea behind this project was to make a base station where an autonomous drone can land whenever its battery gets low, get automatically aligned towards the center and charge itself without requiring any manual help.
 One of the biggest problems we wanted to solve was that the drone might not land exactly at the center of the base station every time. To solve this, we designed a four-rod centering mechanism using **NEMA 17 stepper motors and T8 lead screws**.
 The first two rods move towards the drone and bring it towards the center. Once the drone is aligned, the other two rods move towards it and connect through copper charging plates. After charging is completed, the rods move back and the drone can take off again.
