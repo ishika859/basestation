@@ -1,6 +1,6 @@
 ---
 title: "Autonomous base station"
-author: "a_bot"
+author: "bikas030407"
 created_at: "2026-11-01"
 ---
 
